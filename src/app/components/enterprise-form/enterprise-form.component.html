@@ -1,0 +1,66 @@
+<form [formGroup]="formEnterprise" (ngSubmit)="submitEnterpriseForm()" >
+  <input
+    type="text"
+    name="name"
+    formControlName="name"
+    placeholder="Razão social"
+  />
+
+  <input
+    type="email"
+    name="email"
+    placeholder="E-mail"
+    formControlName="email"
+  />
+
+  <input
+    name="phone"
+    type="tel"
+    placeholder="phone"
+    mask="(99) 00000-0000"
+    formControlName="phone"
+  />
+
+  <input
+    type="text"
+    name="cnpj"
+    placeholder="CNPJ"
+    formControlName="cnpj"
+    mask="00.000.000/0000-99"
+  />
+
+  <input
+    name="cep"
+    type="text"
+    placeholder="CEP"
+    mask="00000-000"
+    formControlName="cep"
+    (keyup)="searchByCEP()"
+  />
+
+  <input
+    type="text"
+    name="address"
+    placeholder="Endereço"
+    formControlName="address"
+  />
+
+  <select placeholder="Estado" formControlName="state">
+    @for(state of statesList; track state.id){
+      <option>{{ state.nome }}</option>
+    }
+  </select>
+
+  <input
+    type="text"
+    name="city"
+    placeholder="city"
+    formControlName="city"
+  />
+
+  <button
+    type="submit"
+    [disabled]="formEnterprise.invalid"
+  >Cadastrar</button>
+</form>
+
