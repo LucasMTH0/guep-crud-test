@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {State} from '../types/State';
+import {State} from '../../types/State';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({

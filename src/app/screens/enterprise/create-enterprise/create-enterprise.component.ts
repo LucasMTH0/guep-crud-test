@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NgxMaskDirective} from 'ngx-mask';
 import { ReactiveFormsModule } from '@angular/forms';
 import {EnterpriseFormComponent} from '../../../components/enterprise-form/enterprise-form.component';
+import {EnterpriseService} from '../../../services/enterprise/enterprise.service';
 
 @Component({
   standalone: true,
@@ -12,10 +13,13 @@ import {EnterpriseFormComponent} from '../../../components/enterprise-form/enter
 })
 
 export class CreateEnterpriseComponent {
-  constructor() {}
+  constructor(private enterpriseService: EnterpriseService) {}
 
   submitNewEnterpriseForm(newEnterpriseForm: any){
-    console.log("Formulário finalizado e componentizado: ", newEnterpriseForm);
+    const formRegister = { ...newEnterpriseForm, created_at: new Date() };
+    newEnterpriseForm.created_at = new Date();
+    console.log("Formulário finalizado e componentizado e com data de criação: ", formRegister);
+
   }
 
 }

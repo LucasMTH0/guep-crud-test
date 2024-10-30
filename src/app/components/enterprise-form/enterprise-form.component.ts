@@ -2,7 +2,7 @@ import {Component, DestroyRef, EventEmitter, inject, Input, Output} from '@angul
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {State} from '../../types/State';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {CountryService} from '../../services/country.service';
+import {CountryService} from '../../services/country/country.service';
 import {NgxMaskDirective} from 'ngx-mask';
 
 @Component({

@@ -1,66 +1,136 @@
-<form [formGroup]="formEnterprise" (ngSubmit)="submitEnterpriseForm()" >
-  <input
-    type="text"
-    name="name"
-    formControlName="name"
-    placeholder="Razão social"
-  />
+<form
+  class="form-group"
+  [formGroup]="formEnterprise"
+  (ngSubmit)="submitEnterpriseForm()"
+>
+  <div class="group-vertical">
+    <label for="name">Razão Social</label>
+    <input
+      id="name"
+      type="text"
+      name="name"
+      class="input-control"
+      formControlName="name"
+      placeholder="Razão social"
+    />
+  </div>
 
-  <input
-    type="email"
-    name="email"
-    placeholder="E-mail"
-    formControlName="email"
-  />
+  <div class="group-vertical">
+    <label for="email">E-mail</label>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      placeholder="E-mail"
+      class="input-control"
+      formControlName="email"
+    />
+  </div>
 
-  <input
-    name="phone"
-    type="tel"
-    placeholder="phone"
-    mask="(99) 00000-0000"
-    formControlName="phone"
-  />
+  <div class="group-horizontal">
+    <div class="group-vertical">
+      <label for="phone">Celular</label>
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        placeholder="phone"
+        class="input-control"
+        mask="(99) 00000-0000"
+        formControlName="phone"
+      />
+    </div>
 
-  <input
-    type="text"
-    name="cnpj"
-    placeholder="CNPJ"
-    formControlName="cnpj"
-    mask="00.000.000/0000-99"
-  />
+    <div class="group-vertical">
+      <label for="cnpj">CNPJ</label>
+      <input
+        id="cnpj"
+        type="text"
+        name="cnpj"
+        placeholder="CNPJ"
+        class="input-control"
+        formControlName="cnpj"
+        mask="00.000.000/0000-99"
+      />
+    </div>
+  </div>
 
-  <input
-    name="cep"
-    type="text"
-    placeholder="CEP"
-    mask="00000-000"
-    formControlName="cep"
-    (keyup)="searchByCEP()"
-  />
+  <div class="group-horizontal">
+    <div class="group-vertical">
+      <label for="cep">CEP</label>
+      <input
+        id="cep"
+        name="cep"
+        type="text"
+        placeholder="CEP"
+        mask="00000-000"
+        class="input-control"
+        formControlName="cep"
+        (keyup)="searchByCEP()"
+      />
+    </div>
 
-  <input
-    type="text"
-    name="address"
-    placeholder="Endereço"
-    formControlName="address"
-  />
+    <div class="group-vertical">
+      <label for="address">Endereço</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        class="input-control"
+        placeholder="Endereço"
+        formControlName="address"
+      />
+    </div>
+  </div>
 
-  <select placeholder="Estado" formControlName="state">
-    @for(state of statesList; track state.id){
-      <option>{{ state.nome }}</option>
-    }
-  </select>
+  <div class="group-horizontal">
+    <div class="group-vertical">
+      <label for="city">Cidade</label>
+      <input
+        id="city"
+        type="text"
+        name="city"
+        placeholder="city"
+        class="input-control"
+        formControlName="city"
+      />
+    </div>
 
-  <input
-    type="text"
-    name="city"
-    placeholder="city"
-    formControlName="city"
-  />
+    <div class="group-vertical">
+      <label for="state">Estado</label>
+      <select
+        id="state"
+        class="input-control"
+        formControlName="state"
+      >
+        @for(state of statesList; track state.id){
+          <option>{{ state.nome }}</option>
+        }
+      </select>
+    </div>
 
-  <button
-    type="submit"
-    [disabled]="formEnterprise.invalid"
-  >Cadastrar</button>
+  </div>
+
+  <div class="group-horizontal">
+    <button
+      type="submit"
+      class="button button-submit"
+      [disabled]="formEnterprise.invalid"
+    >
+      {{ variant == "create" ? "Cadastrar" : "Editar" }}
+    </button>
+
+    <!--@if( variant == "edit"){-->
+      <button
+        class="button button-delete"
+      >
+        Deletar
+      </button>
+<!--    }-->
+  </div>
+
+
+
+
 </form>
 
