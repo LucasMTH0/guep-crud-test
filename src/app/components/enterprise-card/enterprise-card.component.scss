@@ -1,0 +1,43 @@
+.card-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  border: 1px solid var(--gray-800);
+  width: 300px;
+  min-height: 100px;
+
+  cursor: pointer;
+  transition: 0.8s ease-in-out;
+
+  &:hover{
+    .card-hover-information{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.card-hover-information {
+  display: none;
+}
+
+
+.card-title {
+  font-size: 19px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--blue-700);
+}
+
+.card-subtitle {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.card.text {
+  font-size: 8px;
+  font-weight: lighter;
+}

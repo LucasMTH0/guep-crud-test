@@ -1,0 +1,10 @@
+<div
+  class="card-container"
+  (click)="router.navigateByUrl('/enterprise/edit/'+enterprise.id)">
+  <h1 class="card-title">{{ enterprise.name }}</h1>
+  <div class="card-hover-information">
+    <h2 class="card-subtitle">{{ enterprise.email }}</h2>
+    <h3 class="card-text">{{ enterprise.cnpj | mask: '00.000.000/0000-99'}}</h3>
+  </div>
+
+</div>

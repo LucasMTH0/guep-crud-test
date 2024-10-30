@@ -1,7 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 1rem;
+  color: var(--gray-800);
+}
+
 :root {
   --green-500: #5CB85C;
   --green-600: #3C763D;
+
+  --blue-700: #1E3E62;
 
   --red-500: #BA0000;
   --red-600: #8C1010;

@@ -1,0 +1,9 @@
+@if (enterprise){
+  <app-enterprise-form
+    (submitEnterpriseFormValue)="submitUpdateEnterprise($event)"
+    (deleteSelectedEnterprise)="deleteEnterprise($event)"
+    [enterprise]="enterprise"
+    variant="edit"
+  ></app-enterprise-form>
+}
+

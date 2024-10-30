@@ -1,5 +1,15 @@
 {
   "enterprises": [
-
+    {
+      "cep": "25530373",
+      "cnpj": "24061140000138",
+      "phone": "21992304236",
+      "city": "São João de Meriti",
+      "name": "Mc'Donnalds",
+      "email": "mcdonnalds@gmail.com",
+      "state": "Rio de Janeiro",
+      "address": "Rua Nair",
+      "id": "6bfb"
+    }
   ]
 }

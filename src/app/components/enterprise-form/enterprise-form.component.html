@@ -120,13 +120,14 @@
       {{ variant == "create" ? "Cadastrar" : "Editar" }}
     </button>
 
-    <!--@if( variant == "edit"){-->
+    @if( variant == "edit"){
       <button
         class="button button-delete"
+        (click)="deleteSelectedEnterprise.emit(enterprise?.id)"
       >
         Deletar
       </button>
-<!--    }-->
+    }
   </div>
 
 

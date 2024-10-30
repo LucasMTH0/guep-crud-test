@@ -13,7 +13,23 @@ export class EnterpriseService {
     return this.http.get(this.API_URL)
   }
 
+  searchEnterprise(id: string) {
+    return this.http.get(`${this.API_URL}/${id}`);
+  }
+
   createEnterprise(enterprise: Enterprise){
-    this.http.post(this.API_URL, JSON.stringify(enterprise) )
+    return this.http.post(this.API_URL, JSON.stringify(enterprise) )
+  }
+
+  updateEnterprise(enterprise: Enterprise){
+    return this.http.put(`${this.API_URL}/${enterprise.id}`, JSON.stringify(enterprise) )
+  }
+
+  deleteEnterprise(id: string){
+    return this.http.delete(`${this.API_URL}/${id}`);
+  }
+
+  getEnterpriseByCNPJ(cnpj: string){
+    return fetch(`${this.API_URL}?cnpj=${cnpj}`)
   }
 }

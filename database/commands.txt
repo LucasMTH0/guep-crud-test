@@ -1,0 +1,17 @@
+CREATE TABLE enterpriseS (
+id INTEGER PRIMARY KEY AUTOINCREMENT, 
+name TEXT, 
+email TEXT, 
+phone TEXT,
+cnpj TEXT,UNIQUE, 
+cep TEXT,
+address TEXT, 
+city TEXT, 
+state TEXT, 
+created_at datetime
+);
+
+SELECT * FROM enterprise;
+
+INSERT INTO enterprise (name, email, phone, cnpj, cep, address, city, state) 
+VALUES ("Tech Solutions Ltda", "contato@techsolutions.com.br", 11987654321, 

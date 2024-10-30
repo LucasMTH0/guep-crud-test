@@ -1,12 +1,7 @@
-<section>
-  <nav>
-    <button (click)="router.navigate(['/enterprise/create'])">
-      Criar nova empresa
-    </button>
-  </nav>
+<section class="container">
 
   @for (enterprise of enterpriseList; track enterprise) {
-
+    <app-enterprise-card [enterprise]="enterprise"></app-enterprise-card>
   } @empty {
     <h1>Nenhuma empresa cadastrada.</h1>
   }

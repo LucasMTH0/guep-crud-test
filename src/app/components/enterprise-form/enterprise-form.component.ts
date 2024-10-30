@@ -1,9 +1,10 @@
-import {Component, DestroyRef, EventEmitter, inject, Input, Output} from '@angular/core';
+import {Component, DestroyRef, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {State} from '../../types/State';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CountryService} from '../../services/country/country.service';
 import {NgxMaskDirective} from 'ngx-mask';
+import {Enterprise} from '../../types/Enterprise';
 
 @Component({
   selector: 'app-enterprise-form',
@@ -12,9 +13,11 @@ import {NgxMaskDirective} from 'ngx-mask';
   templateUrl: './enterprise-form.component.html',
   styleUrl: './enterprise-form.component.scss'
 })
-export class EnterpriseFormComponent {
+export class EnterpriseFormComponent implements OnChanges{
+  @Input() enterprise: Enterprise | null = null;
   @Input() variant: "create" | "edit" = "create";
   @Output() submitEnterpriseFormValue = new EventEmitter();
+  @Output() deleteSelectedEnterprise = new EventEmitter();
 
   statesList: State[] = [];
   destroyRef = inject(DestroyRef);
@@ -45,6 +48,26 @@ export class EnterpriseFormComponent {
     private countryService: CountryService
   ) {
     this.getStates();
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("enterprise: ", this.enterprise)
+    if(this.variant == "edit" && this.enterprise){
+      this.setEnterpriseSelectedValues()
+    }
+  }
+
+  setEnterpriseSelectedValues(){
+    console.log("enterprise selected: ", this.enterprise);
+    this.formEnterprise.get('cep')?.setValue(this.enterprise?.cep);
+    this.formEnterprise.get('cnpj')?.setValue(this.enterprise?.cnpj);
+    this.formEnterprise.get('phone')?.setValue(this.enterprise?.phone);
+    this.formEnterprise.get('city')?.setValue(this.enterprise?.city);
+    this.formEnterprise.get('name')?.setValue(this.enterprise?.name);
+    this.formEnterprise.get('email')?.setValue(this.enterprise?.email);
+    this.formEnterprise.get('state')?.setValue(this.enterprise?.state);
+    this.formEnterprise.get('address')?.setValue(this.enterprise?.address);
   }
 
   submitEnterpriseForm(){

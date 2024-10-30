@@ -1,0 +1,31 @@
+.header-container {
+  background: var(--gray-800);
+  color: var(--gray-500);
+
+  width: 100%;
+  height: 4rem;
+
+  padding: 0.12rem;
+  margin-bottom: 1rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  height: 100%;
+  width: 100%;
+
+}
+
+.header-link{
+  text-decoration: none;
+  color: var(--gray-500);
+  font-size: 1.438rem;
+}
+
+.separate {
+  flex: 1;
+}
