@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {EnterpriseService} from '../../services/enterprise/enterprise.service';
 import {EnterpriseCardComponent} from '../../components/enterprise-card/enterprise-card.component';
+import {DatabaseService} from '../../services/database/database.service';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +15,14 @@ import {EnterpriseCardComponent} from '../../components/enterprise-card/enterpri
 })
 export class HomeComponent {
   enterpriseList: any = []
-  constructor(protected router: Router, private enterpriseService: EnterpriseService) {
+  constructor(
+    protected router: Router,
+    private enterpriseService: EnterpriseService
+  ) {
     this.getEnterprises();
   }
 
-  getEnterprises(){
-    this.enterpriseService.getEnterprises().subscribe((enterprises) => this.enterpriseList = enterprises);
+  async getEnterprises(){
+    this.enterpriseList = await this.enterpriseService.getEnterprises()
   }
 }

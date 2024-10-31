@@ -44,22 +44,17 @@ export class EnterpriseFormComponent implements OnChanges{
     address: new FormControl('', [Validators.required]),
   });
 
-  constructor(
-    private countryService: CountryService
-  ) {
+  constructor(private countryService: CountryService) {
     this.getStates();
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("enterprise: ", this.enterprise)
     if(this.variant == "edit" && this.enterprise){
       this.setEnterpriseSelectedValues()
     }
   }
 
   setEnterpriseSelectedValues(){
-    console.log("enterprise selected: ", this.enterprise);
     this.formEnterprise.get('cep')?.setValue(this.enterprise?.cep);
     this.formEnterprise.get('cnpj')?.setValue(this.enterprise?.cnpj);
     this.formEnterprise.get('phone')?.setValue(this.enterprise?.phone);
@@ -80,17 +75,13 @@ export class EnterpriseFormComponent implements OnChanges{
     this.formEnterprise.get('address')?.setValue(location.logradouro);
   }
 
-  searchByCEP(){
+  async searchByCEP(){
     if(this.formEnterprise.value.cep.length == 8){
-      this.countryService.getAddressDataByCEP(this.formEnterprise.value.cep)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((cepResult: any) =>this.setLocationValues(cepResult));
+      this.setLocationValues( await this.countryService.getAddressDataByCEP(this.formEnterprise.value.cep) )
     }
   }
 
-  getStates(){
-    this.countryService.getStates()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((states) => this.statesList = states as State[]);
+  async getStates(){
+    this.statesList = await this.countryService.getStates();
   }
 }

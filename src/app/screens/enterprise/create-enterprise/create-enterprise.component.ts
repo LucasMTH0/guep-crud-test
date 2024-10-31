@@ -25,10 +25,10 @@ export class CreateEnterpriseComponent {
 
   async submitNewEnterpriseForm(newEnterpriseForm: any){
     const formRegister = { ...newEnterpriseForm, created_at: new Date() };
-    const isCNPJisRegistered = await this.enterpriseService.getEnterpriseByCNPJ(formRegister.cnpj).then((response) => response.json())
-    if(isCNPJisRegistered.length > 0){
-      this.toastr.error("Este CNPJ já foi cadastrado.");
-    } else {
+    // const isCNPJisRegistered = await this.enterpriseService.getEnterpriseByCNPJ(formRegister.cnpj).then((response) => response.json())
+    // if(isCNPJisRegistered.length > 0){
+    //   this.toastr.error("Este CNPJ já foi cadastrado.");
+    // } else {
       try {
         this.enterpriseService.createEnterprise(formRegister)
           .pipe(takeUntilDestroyed(this.destroyRef))
@@ -39,7 +39,7 @@ export class CreateEnterpriseComponent {
       } catch (e) {
         console.log(" deu erro bro: ", e)
       }
-    }
+   // }
   }
 
 }

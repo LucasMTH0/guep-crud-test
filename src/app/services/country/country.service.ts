@@ -10,10 +10,10 @@ export class CountryService {
   constructor(private http: HttpClient) { }
 
   getStates(){
-    return this.http.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+    return fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados").then((response: Response) => response.json());
   }
 
   getAddressDataByCEP(cep: string){
-    return this.http.get(`https://viacep.com.br/ws/${cep}/json/`)
+    return fetch(`https://viacep.com.br/ws/${cep}/json/`).then((response: Response) => response.json());
   }
 }

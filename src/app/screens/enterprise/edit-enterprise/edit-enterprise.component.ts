@@ -27,40 +27,37 @@ export class EditEnterpriseComponent {
     this.getEnterprise();
   }
 
-  getEnterprise(){
-    this.enterpriseService.searchEnterprise(this.activatedRoute.snapshot.params['id'])
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((enterpriseFound: any) => {
-        this.enterprise = enterpriseFound;
-      })
+  async getEnterprise(){
+    this.enterprise = await this.enterpriseService.getEnterpriseByID(this.activatedRoute.snapshot.params['id']);
+    this.enterprise = this.enterprise[0]
   }
 
-  deleteEnterprise(id: string){
-    this.enterpriseService.deleteEnterprise(id)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((deleteEnterpriseResponse) => {
-        this.toastr.success("Dados deletados com sucesso.");
-        this.router.navigate(['/']);
-      })
+  async deleteEnterprise(id: string){
+    const deleteEnterprise = await this.enterpriseService.deleteEnterprise(id)
+    if(deleteEnterprise){
+      this.toastr.success("Dados deletados com sucesso.");
+      this.router.navigate(['/']);
+    }
+  }
+
+  async checkIfCNPJIsRegisteredInOtherEnterprise(cnpj: string){
+    const userWithSameCNPJRegistered = await this.enterpriseService.getEnterpriseByCNPJ(cnpj)
+    return (userWithSameCNPJRegistered.length > 0 && userWithSameCNPJRegistered[0].id !== this.enterprise.id) ? true : false;
   }
 
   async submitUpdateEnterprise(updateEnterpriseForm: Enterprise){
-    const userWithSameCNPJRegistered = await this.enterpriseService.getEnterpriseByCNPJ(updateEnterpriseForm.cnpj).then((response) => response.json())
-    console.log("form: ", updateEnterpriseForm)
-    const enterpriseFormWithID = {...updateEnterpriseForm, id: this.enterprise.id};
-    if(userWithSameCNPJRegistered.length > 0 && userWithSameCNPJRegistered[0].id !== this.enterprise.id){
+    if(await this.checkIfCNPJIsRegisteredInOtherEnterprise(updateEnterpriseForm.cnpj)){
       this.toastr.error("Este CNPJ já foi cadastrado por outro usuário.");
     } else {
-
       try{
-        this.enterpriseService.updateEnterprise(enterpriseFormWithID)
-          .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe((updateEnterpriseDataResult) => {
-            this.toastr.success("Dados atualizados com sucesso!");
-            this.router.navigate(['/']);
-          })
-      } catch (e) {
-
+          this.enterpriseService.updateEnterprise({...updateEnterpriseForm, id: this.enterprise.id})
+            .pipe(takeUntilDestroyed(this.destroyRef))
+            .subscribe((responseUpdateEnterprise) => {
+              this.toastr.success("Dados atualizados com sucesso!");
+              this.router.navigate(['/']);
+            })
+      }catch(error){
+        this.toastr.error("Erro ao atualizar os dados, tente novamente.")
       }
     }
   }
