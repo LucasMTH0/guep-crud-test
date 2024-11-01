@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {EnterpriseService} from '../../services/enterprise/enterprise.service';
 import {EnterpriseCardComponent} from '../../components/enterprise-card/enterprise-card.component';
-import {DatabaseService} from '../../services/database/database.service';
+
 
 @Component({
   selector: 'app-home',

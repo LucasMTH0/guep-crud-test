@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EnterpriseFormComponent } from './enterprise-form.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {NgxMaskDirective} from 'ngx-mask';
+import {NgxMaskDirective, provideEnvironmentNgxMask} from 'ngx-mask';
 
 describe('EnterpriseFormComponent', () => {
   let component: EnterpriseFormComponent;
@@ -11,10 +11,10 @@ describe('EnterpriseFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        NgxMaskDirective,
         EnterpriseFormComponent,
         HttpClientTestingModule
       ],
+      providers: [provideEnvironmentNgxMask()]
     })
     .compileComponents();
 

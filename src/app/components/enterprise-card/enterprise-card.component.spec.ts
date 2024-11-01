@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EnterpriseCardComponent } from './enterprise-card.component';
-import {NgxMaskDirective} from 'ngx-mask';
+import {NgxMaskDirective, provideEnvironmentNgxMask} from 'ngx-mask';
 
 describe('EnterpriseCardComponent', () => {
   let component: EnterpriseCardComponent;
@@ -9,7 +9,8 @@ describe('EnterpriseCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EnterpriseCardComponent, NgxMaskDirective]
+      imports: [EnterpriseCardComponent, NgxMaskDirective],
+      providers: [provideEnvironmentNgxMask()]
     })
     .compileComponents();
 

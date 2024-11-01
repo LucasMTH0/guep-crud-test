@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
 
+## Backend server
+
+Execute o comando `ng run backend` para ativar a api e assim fazer as requisições com o banco de dados. a url é a http://localhost:9090/api/enterprises
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
