@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Backend server
 
-Execute o comando `ng run backend` para ativar a api e assim fazer as requisições com o banco de dados. a url é a http://localhost:9090/api/enterprises
+Execute o comando `npm run backend` para ativar a api e assim fazer as requisições com o banco de dados. a url é a http://localhost:9090/api/enterprises
 
 ## Development server
 
